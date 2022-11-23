@@ -30,9 +30,12 @@ public class Game {
     }
 
     private void proceed() {
+        Validator validator = new Validator();
+
         while (true) {
             System.out.print("숫자를 입력해주세요 : ");
             String inputNumber = scanner.nextLine();
+            validate(validator, inputNumber);
             String output = verifyAnswer(inputNumber);
             System.out.println(output);
             if (output.equals("3스트라이크")) {
@@ -41,13 +44,16 @@ public class Game {
         }
     }
 
+    private void validate(Validator validator, String inputNumber) {
+        if (!validator.isNumber(inputNumber) || !validator.isLengthThree(inputNumber)
+            || !validator.isRightRangeNumber(inputNumber) || !validator.isAllDifferentNumber(inputNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private String verifyAnswer(String inputNumber) {
         int strike = 0;
         int ball = 0;
-
-        if (inputNumber.length() != 3) {
-            throw new IllegalArgumentException();
-        }
 
         // 자리수 일치 여부 확인
         for (int i = 0; i < 3; i++) {
