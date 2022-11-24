@@ -37,4 +37,8 @@ public class User {
             throw new IllegalArgumentException();
         }
     }
+
+    public void closeScanner() {
+        scanner.close();
+    }
 }

@@ -18,6 +18,7 @@ public class Game {
             computer.pickThreeNumbers();
             guess();
         } while (!user.askIfEnd());
+        user.closeScanner();
     }
 
     private void guess() {
